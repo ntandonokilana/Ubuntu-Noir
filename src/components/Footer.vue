@@ -1,7 +1,7 @@
 <template>
     <div>
        <footer class='footer'>
-           <p>&copy; @Ubuntu Noir {{ currentYear }} </p>
+           <p>&copy; Copyright @Ubuntu Noir {{ currentYear }} </p>
        </footer>
     </div>
  </template>

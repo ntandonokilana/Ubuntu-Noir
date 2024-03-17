@@ -5,6 +5,7 @@ import ProductsView from '../views/ProductsView.vue';
 import ContactView from '../views/ContactView.vue';
 import SingleView from '../views/SingleView.Vue';
 import CheckoutView from '../views/CheckoutView.vue';
+import AdminView from '../views/AdminView.vue';
 import SignUpView from '../views/SignUpView.vue'
 
 const routes = [
@@ -40,6 +41,11 @@ const routes = [
     path: '/checkout',
     name: 'Checkout',
     component: CheckoutView
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: AdminView
   },
   {
     path: '/signup',

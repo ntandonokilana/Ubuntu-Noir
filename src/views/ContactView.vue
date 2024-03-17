@@ -20,6 +20,7 @@
           max-width: 400px;
           margin: 0 auto;
           border-radius: 30px;
+          background-image: url('https://i.ibb.co/q0JQQ13/denise-jans-Lq6rcif-Gj-OU-unsplash.jpg');
       }
   
       .contact-form h2 {
