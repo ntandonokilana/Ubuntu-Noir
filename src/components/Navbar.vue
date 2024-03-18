@@ -9,6 +9,7 @@
         <router-link to="/products" class="nav-link">Gear</router-link> |
         <router-link to="/checkout" class="nav-link">Checkout</router-link> |
         <router-link to="/contact" class="nav-link">Contact</router-link> |
+        <router-link to="/admin" class="nav-link">Admin</router-link>
         <router-link to="/signup" class="nav-link">Sign Up</router-link> 
 
       </div>
