@@ -6,7 +6,9 @@ import ContactView from '../views/ContactView.vue';
 import SingleView from '../views/SingleView.Vue';
 import CheckoutView from '../views/CheckoutView.vue';
 import AdminView from '../views/AdminView.vue';
-import SignUpView from '../views/SignUpView.vue'
+import UsersView from '../views/UsersView.vue';
+import SignUpView from '../views/SignUpView.vue';
+import LoginView from '../views/LoginView.vue'
 
 const routes = [
   {
@@ -48,10 +50,20 @@ const routes = [
     component: AdminView
   },
   {
+    path: '/users',
+    name: 'Users',
+    component: UsersView
+  },
+  {
     path: '/signup',
     name: 'signup',
     component: SignUpView
-  }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
 ]
 
 const router = createRouter({

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar/>
-    <router-view/>
+    <router-view class="view-content"/>
     <Footer/>
     <Spinner v-if="loading"/>
   </div>
@@ -32,11 +32,15 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #333; /* Adjust text color */
+  color: #333; 
   min-height: 100vh;
-  background-color: #f5f5f5; /* Lighter background color */
-  padding-bottom: 50px; /* Add padding to ensure footer doesn't overlap content */
-  overflow-y: auto; /* Allow scrolling if content overflows */
+  /* background-color: #f5f5f5;  */
+  /* background-image: url('https://i.ibb.co/mFw0JLf/vintage-photography.jpg'); */
+  padding-bottom: 50px; 
+  overflow-y: auto; 
 }
 
+.view-content {
+  margin-top: 20px; /* Adjust as needed */
+}
 </style>
