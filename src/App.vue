@@ -43,4 +43,5 @@ export default {
 .view-content {
   margin-top: 20px; /* Adjust as needed */
 }
+
 </style>

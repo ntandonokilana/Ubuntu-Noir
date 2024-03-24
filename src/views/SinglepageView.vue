@@ -8,7 +8,6 @@
         <div class="product-info">
           <div class="product-text">
             <h1>{{ product.prodname }}</h1>
-            <!-- <p>{{ product.description }}</p> -->
         </div>
           <p><span>R{{ product.amount }}</span></p>
         <div class="product-price-btn">
@@ -37,8 +36,6 @@ export default {
   },
   methods: {
     addToCart(product) {
-      // You can dispatch an action to add the product to the cart
-      // For example, assuming you have an action named addToCart in your store
       this.$store.dispatch('addToCart', product);
       
       // Show SweetAlert confirmation

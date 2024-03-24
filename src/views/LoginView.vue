@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Swal from 'sweetalert2';
 
 export default {
@@ -34,25 +35,23 @@ export default {
     };
   },
   methods: {
-    submitForm() {
-      // Your login logic here
-      console.log('Form submitted:', this.form);
-
-      // Assuming login is successful, show success message
-      this.showLoginSuccessMessage();
-    },
-    showLoginSuccessMessage() {
-      // Show success message using SweetAlert
-      Swal.fire({
-        icon: 'success',
-        title: 'Login Successful!',
-        text: 'You have successfully logged in.',
-        showConfirmButton: false,
-        timer: 1500
-      });
+    async submitForm() {
+      try {
+        await axios.post('https://capstone-b.onrender.com/login', this.form);
+        // Redirect to dashboard or home page
+        this.$router.push('/dashboard');
+      } catch (error) {
+        console.error('Login failed:', error);
+        // Show error message
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: 'Invalid email or password. Please try again.'
+        });
+      }
     }
   }
-}
+};
 </script>
 
 <style scoped>

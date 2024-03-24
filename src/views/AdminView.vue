@@ -178,4 +178,39 @@ export default {
 .delete-btn:hover {
   background-color: #d3d61f;
 }
+
+@media screen and (max-width: 576px) {
+  .admin-section {
+    overflow-x: auto; /* Add horizontal scrolling for small screens */
+  }
+
+  .product-table {
+    /* Add styles to make the table responsive */
+    width: 100%;
+    overflow: auto;
+  }
+
+  .product-table th,
+  .product-table td {
+    white-space: nowrap; 
+  }
+
+  .product-table th,
+  .product-table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .product-table .product-image {
+    max-width: 80px; 
+    height: auto; 
+  }
+
+  .edit-btn,
+  .delete-btn {
+    padding: 6px 10px; 
+    margin-right: 3px; 
+  }
+}
+
 </style>

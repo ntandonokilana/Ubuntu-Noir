@@ -44,6 +44,9 @@
 </template>
 
 <script>
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
 export default {
   data() {
     return {
@@ -52,16 +55,26 @@ export default {
         surname: '',
         gender: '',
         age: '',
-        Role: '',
         email: '',
         password: ''
       }
     };
   },
   methods: {
-    submitForm() {
-      // Handle form submission here
-      console.log('Form submitted:', this.form);
+    async submitForm() {
+      try {
+        await axios.post('https://capstone-b.onrender.com/signup', this.form);
+        // Redirect to login page or show success message
+        this.$router.push('/login');
+      } catch (error) {
+        console.error('Error during registration:', error);
+        // Show error message
+        Swal.fire({
+          icon: 'error',
+          title: 'Registration Failed',
+          text: 'Please try again later.'
+        });
+      }
     }
   }
 };
@@ -73,7 +86,6 @@ export default {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  margin: right;
 }
 
 .background-image {
@@ -89,18 +101,14 @@ export default {
 
 .signup-form {
   position: relative;
-  max-width: 500px;
+  max-width: 90%; /* Adjust max-width for smaller screens */
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 10px;
 }
 
-.signup-form h2 {
-  text-align: center;
-  color: #fff;
-}
-
+.signup-form h2,
 .signup-form p {
   text-align: center;
   color: #fff;
@@ -115,7 +123,8 @@ export default {
 }
 
 .signup-form input,
-.signup-form select {
+.signup-form select,
+.signup-form button {
   width: 100%;
   padding: 0.5rem;
   background-color: transparent;
@@ -134,16 +143,16 @@ export default {
   margin-top: 20px;
   text-align: center;
 }
+</style>
 
-.signup-form button {
-  padding: 0.75rem 1rem;
-  border: none;
-  background-color: #007bff;
-  color: #fff;
-  cursor: pointer;
-}
+<style>
+@media screen and (max-width: 576px) {
+  .signup-form {
+    padding: 10px; 
+  }
 
-.signup-form button:hover {
-  background-color: #0056b3;
+  .signup-form button {
+    padding: 0.5rem 1rem; 
+  }
 }
 </style>

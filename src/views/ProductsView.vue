@@ -6,9 +6,7 @@
         <button class="btn btn-secondary dropdown-toggle" type="button" id="sortDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Sort
         </button>
-        <div class="dropdown-menu" aria-labelledby="sortDropdownMenuButton">
-          <button class="dropdown-item" @click="sortBy('name')">Name A-Z</button>
-        </div>
+        <button class="dropdown-item" @click="sortBy('name')">Name A-Z</button>
       </div>
     </div>
     <div class="product-grid">
@@ -205,4 +203,40 @@ export default {
 .add-to-cart-btn:hover {
   background-color: #004080;
 }
+
+@media screen and (max-width: 576px) {
+  .product-card {
+    width: 100%; 
+    margin-bottom: 20px;
+  }
+
+  .product-title {
+    font-size: 1.2rem; 
+    text-align: center; 
+    margin-bottom: 5px; 
+  }
+
+  .product-image {
+    width: 100%; 
+    height: auto; 
+    margin-bottom: 10px; 
+  }
+
+  .product-details p {
+    font-size: 0.9rem;
+    margin: 3px 0; 
+  }
+
+  .product-buttons {
+    text-align: center; 
+  }
+
+  .add-to-cart-btn,
+  .view-more-btn {
+    padding: 8px 12px; 
+    font-size: 0.9rem; 
+    margin: 5px;
+  }
+}
+
 </style>

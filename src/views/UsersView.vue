@@ -131,3 +131,38 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+@media screen and (max-width: 576px) {
+  .admin-section {
+    overflow-x: auto; 
+  }
+
+  .user-table {
+    width: 100%;
+    overflow: auto;
+  }
+
+  .user-table th,
+  .user-table td {
+    white-space: nowrap; 
+  }
+
+  .user-table th,
+  .user-table td {
+    padding: 8px; 
+    font-size: 14px; 
+  }
+
+  .user-table .user-image {
+    max-width: 80px; 
+    height: auto; 
+  }
+
+  .edit-btn,
+  .delete-btn {
+    padding: 6px 10px; 
+    margin-right: 3px; 
+  }
+}
+</style>

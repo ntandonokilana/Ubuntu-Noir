@@ -1,14 +1,14 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import AboutView from '../views/AboutView.vue';
 import ProductsView from '../views/ProductsView.vue';
 import ContactView from '../views/ContactView.vue';
-import SinglepageView from '../views/SinglepageView.vue';
+import SinglepageView from '../views/SinglepageView.vue'; 
 import CheckoutView from '../views/CheckoutView.vue';
 import AdminView from '../views/AdminView.vue';
 import UsersView from '../views/UsersView.vue';
 import SignUpView from '../views/SignUpView.vue';
-import LoginView from '../views/LoginView.vue'
+import LoginView from '../views/LoginView.vue';
 
 const routes = [
   {
@@ -19,10 +19,7 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: AboutView
   },
   {
     path: '/products',
@@ -35,23 +32,24 @@ const routes = [
     component: ContactView
   },
   {
-    path: '/singlepage',
-    name: 'singlepage',
-    component: SinglepageView
+    path: '/product/:productId', 
+    name: 'singleProduct',
+    component: SinglepageView,
+    props: true 
   },
   {
     path: '/checkout',
-    name: 'Checkout',
+    name: 'checkout',
     component: CheckoutView
   },
   {
     path: '/admin',
-    name: 'Admin',
+    name: 'admin',
     component: AdminView
   },
   {
     path: '/users',
-    name: 'Users',
+    name: 'users',
     component: UsersView
   },
   {
@@ -64,11 +62,11 @@ const routes = [
     name: 'login',
     component: LoginView
   },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
 
-export default router
+export default router;

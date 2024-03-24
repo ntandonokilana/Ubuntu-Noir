@@ -51,7 +51,7 @@ export default {
 
 <style scoped>
 .container {
-  max-width: 800px;
+  max-width: 90%; 
   margin: 0 auto;
   padding: 20px;
 }
@@ -74,7 +74,7 @@ td {
 }
 
 .product-image {
-  width: 100px;
+  width: 80px; 
   height: auto;
 }
 
@@ -89,31 +89,37 @@ td {
   text-align: center;
 }
 
-.checkout-btn {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  text-decoration: none;
+.checkout-btn,
+.clear-cart-btn {
+  padding: 8px 16px;
   border-radius: 5px;
   margin-right: 10px;
 }
 
-.clear-cart-btn {
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .remove-btn {
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
+  padding: 5px 10px; 
   border-radius: 3px;
-  cursor: pointer;
+}
+</style>
+
+<style>
+@media screen and (max-width: 576px) {
+  .product-image {
+    width: 60px; 
+  }
+
+  th,
+  td {
+    padding: 8px;
+  }
+
+  .checkout-btn,
+  .clear-cart-btn {
+    padding: 6px 12px; 
+  }
+
+  .remove-btn {
+    padding: 4px 8px; 
+  }
 }
 </style>
