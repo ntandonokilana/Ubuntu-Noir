@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import AboutView from '../views/AboutView.vue';
 import ProductsView from '../views/ProductsView.vue';
 import ContactView from '../views/ContactView.vue';
-import SingleView from '../views/SingleView.Vue';
+import SinglepageView from '../views/SinglepageView.vue';
 import CheckoutView from '../views/CheckoutView.vue';
 import AdminView from '../views/AdminView.vue';
 import UsersView from '../views/UsersView.vue';
@@ -35,9 +35,9 @@ const routes = [
     component: ContactView
   },
   {
-    path: '/single',
-    name: 'single',
-    component: SingleView
+    path: '/singlepage',
+    name: 'singlepage',
+    component: SinglepageView
   },
   {
     path: '/checkout',

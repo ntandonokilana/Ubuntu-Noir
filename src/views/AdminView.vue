@@ -1,94 +1,121 @@
 <template>
-  <div class="admin-page">
-    <div class="admin-section">
-      <h2>Products</h2>
-      <table class="product-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(product, index) in products" :key="product.productID" :class="{ 'zebra-stripe': index % 2 === 0 }">
-            <td>{{ index + 1 }}</td>
-            <td><h2>{{ product.prodname }}</h2></td>
-            <td><p>Category: {{ product.category }}</p></td>
-            <td><p>Price: {{ product.amount }}</p></td>
-            <td><img :src="product.produrl" alt="Product Image" class="product-image"></td>
-            <td>
-              <button class="edit-btn" @click="showEditForm(product)">Edit</button>
-              <button class="delete-btn" @click="deleteProduct(product._id)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div v-if="showEdit">
-      <h2>Edit Product</h2>
-      <form @submit.prevent="updateProduct">
-        <label for="editName">Name:</label>
-        <input type="text" id="editName" v-model="editedProduct.prodname">
-        
-        <label for="editCategory">Category:</label>
-        <input type="text" id="editCategory" v-model="editedProduct.category">
-        
-        <label for="editPrice">Price:</label>
-        <input type="number" id="editPrice" v-model="editedProduct.amount">
-        
-        <button type="submit">Update</button>
-        <button @click="cancelEdit">Cancel</button>
-      </form>
-    </div>
+  <div class="admin-section">
+    <h2>Products</h2>
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(product, index) in products" :key="product.productID" :class="{ 'zebra-stripe': index % 2 === 0 }">
+          <td>{{ index + 1 }}</td>
+          <td>
+            <template v-if="!product.editing">{{ product.prodname }}</template>
+            <input v-else type="text" v-model="product.editedName" class="input-field">
+          </td>
+          <td>
+            <template v-if="!product.editing">{{ product.category }}</template>
+            <input v-else type="text" v-model="product.editedCategory" class="input-field">
+          </td>
+          <td>
+            <template v-if="!product.editing">{{ product.amount }}</template>
+            <input v-else type="number" v-model.number="product.editedPrice" class="input-field">
+          </td>
+          <td>
+            <template v-if="!product.editing"><img :src="product.produrl" alt="Product Image" class="product-image"></template>
+            <input v-else type="text" v-model="product.editedImage" class="input-field">
+          </td>
+          <td>
+            <template v-if="!product.editing">
+              <button class="edit-btn" @click="editProduct(product)">Edit</button>
+              <button class="delete-btn" @click="deleteProduct(product.productID)">Delete</button>
+            </template>
+            <template v-else>
+              <button class="save-btn" @click="saveChanges(product)">Save</button>
+              <button class="cancel-btn" @click="cancelEdit(product)">Cancel</button>
+            </template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default {
   data() {
-    return {
-      showEdit: false,
-      editedProduct: {},
-    };
+    return {};
   },
   computed: {
     products() {
       return this.$store.state.products;
     },
   },
+  mounted() {
+    this.$store.dispatch('fetchProducts');
+  },
   methods: {
-    async showEditForm(product) {
-      this.editedProduct = { ...product }; // Make a copy of the product to avoid directly modifying the original
-      this.showEdit = true;
+    editProduct(product) {
+      product.editing = true;
+      product.editedName = product.prodname;
+      product.editedCategory = product.category;
+      product.editedPrice = product.amount;
+      product.editedImage = product.produrl;
     },
-    async updateProduct() {
+    cancelEdit(product) {
+      product.editing = false;
+    },
+    async saveChanges(product) {
       try {
-        await axios.put(`http://localhost:3000/products/${this.editedProduct.productID}`, this.editedProduct);
-        this.$store.dispatch('fetchProducts');
-        this.showEdit = false; // Hide the edit form after updating
+        product.prodname = product.editedName;
+        product.category = product.editedCategory;
+        product.amount = product.editedPrice;
+        product.produrl = product.editedImage;
+        product.editing = false;
+        // Send a request to update the product on the server if needed
+        Swal.fire({
+          icon: 'success',
+          title: 'Product updated successfully',
+          showConfirmButton: false,
+          timer: 1500
+        });
       } catch (error) {
         console.error('Error updating product:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Failed to update product!',
+        });
       }
     },
-    cancelEdit() {
-      this.showEdit = false; // Hide the edit form without updating
-    },
-    async deleteProduct(productID) {
+    async deleteProduct(productId) {
       try {
-        await axios.delete(`http://localhost:3000/products/${productID}`);
-        this.$store.dispatch('fetchProducts');
+        // Send a request to delete the product from the server if needed
+        this.$store.dispatch('deleteProduct', productId);
+        Swal.fire({
+          icon: 'success',
+          title: 'Product deleted successfully',
+          showConfirmButton: false,
+          timer: 1500
+        });
       } catch (error) {
         console.error('Error deleting product:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Failed to delete product!',
+        });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
