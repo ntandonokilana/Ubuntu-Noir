@@ -162,7 +162,7 @@ export default {
   .edit-btn,
   .delete-btn {
     padding: 6px 10px; 
-    margin-right: 3px; 
+    margin-right: 3px; /* Reduce margin between buttons */
   }
 }
 </style>
